@@ -15,13 +15,6 @@ public class TotalYearMapper extends Mapper<LongWritable, Text, IntWritable, Int
     private final IntWritable year = new IntWritable();
 
     public void map(LongWritable key, Text value, Context context) throws IOException, InterruptedException {
-        String line = value.toString();
-
-        // skip the header line
-        if (line.toLowerCase().contains("year")) {
-            return;
-        }
-
         // line is of the format
         // imdb_title_id, title, original_title, year, date_published, genre, duration, ...
         List<String> data = splitString(value.toString());
